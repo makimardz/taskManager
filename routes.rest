@@ -1,0 +1,8 @@
+
+GET http://localhost:3000/api-docs
+
+### GET user
+GET http://localhost/user/
+
+### add user
+POST http://localhost/user/
