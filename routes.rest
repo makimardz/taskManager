@@ -2,7 +2,38 @@
 GET http://localhost:3000/api-docs
 
 ### GET user
-GET http://localhost/user/
+GET http://localhost:3000/user/
 
 ### add user
-POST http://localhost/user/
+POST http://localhost:3000/user/
+
+### 
+POST http://localhost:3000/user/login/
+
+### 
+GET http://localhost:3000/user/{id}
+
+### 
+DELETE http://localhost:3000/user/{id}
+
+### 
+POST http://localhost:3000/user/update/{id}
+
+### 
+DELETE http://localhost:3000/user/logout
+
+### 
+GET http://localhost:3000/task/
+
+### 
+POST http://localhost:3000/task/
+
+### 
+GET http://localhost:3000/task/{id}
+
+### 
+POST http://localhost:3000/task/{id}
+
+### 
+DELETE http://localhost:3000/task/{id}
+
