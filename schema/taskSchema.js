@@ -1,7 +1,8 @@
 const mongoose = require('mongoose');
+/*
 const validator = require('validator');
 const bcrypt = require('bcryptjs');
-
+*/
 const taskSchema = mongoose.Schema({
     title: {
         type: String,
@@ -16,9 +17,6 @@ const taskSchema = mongoose.Schema({
    complete: {
         type: Boolean,
         defult:false
-    },
-    img: {
-        type :Buffer
     },
     owner:{
         type :mongoose.Schema.ObjectId,

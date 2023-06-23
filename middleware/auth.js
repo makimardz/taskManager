@@ -1,9 +1,9 @@
 const jwt = require('jsonwebtoken')
-const userModel= require('../model/userModel')
+const userModel= require('../models/userModel')
 const auth = async (req, res,next) => {
     try {
         const token = req.header('Authorization').replace("Barrer ",'');
-        const decode= jwt.verify(token,process.env.JWT_SECRET)
+        const decode = jwt.verify(token,process.env.JWT_SECRET)
         const user= await userModel.findOne({_id:decode._id,tokens:token});
       
         if(!user){
@@ -18,4 +18,4 @@ const auth = async (req, res,next) => {
 
     
 }
-module.exports =auth; 
+module.exports = auth; 

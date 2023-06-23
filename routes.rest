@@ -4,29 +4,36 @@ GET http://localhost:3000/api-docs
 ### GET user
 GET http://localhost:3000/user/
 
-### add user
+### create user
 POST http://localhost:3000/user/
+Content-Type: application/json
+
+{
+  "name": "jane  Doe",
+  "email": "jane@example.com",
+  "password": "password1321"
+}
 
 ### 
-POST http://localhost:3000/user/login/
+GET http://localhost:3000/user/6495c3b4ad694f7660acd417
+Content-Type: application/json
 
 ### 
-GET http://localhost:3000/user/{id}
-
-### 
-DELETE http://localhost:3000/user/{id}
-
-### 
-POST http://localhost:3000/user/update/{id}
-
-### 
-DELETE http://localhost:3000/user/logout
+DELETE http://localhost:3000/user/6495c3b4ad694f7660acd417
 
 ### 
 GET http://localhost:3000/task/
 
 ### 
 POST http://localhost:3000/task/
+Content-Type: application/json
+
+{
+  "title": "Buy groceries",
+  "description": "Buy milk, bread, and eggs",
+  "complete": false,
+  "owner": "6495c5fdad694f7660acd41d"
+}
 
 ### 
 GET http://localhost:3000/task/{id}
