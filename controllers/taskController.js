@@ -1,15 +1,26 @@
 const Task = require('../models/taskModel');
 
-const getAllTasks = async (req, res) => {
+/*const getAllTasks = async (req, res) => {
   try {
-    await req.user.populate('tasks')
-    res.status(200).send(req.user.tasks);
+    await req.user.populate('task')
+    res.status(200).send(req.user.task);
 
   } catch (error) {
     res.status(500).send(error);
   }
 };
+*/
 
+const getAllTasks = async (req, res) => {
+  await Task
+  .find({ })
+  .then((data) => {
+    res.status(200).send(data);
+  })
+  .catch((error) => {
+    res.status(400).send(error);
+  });
+};
 const createTask = async (req, res) => {
   try {
     const task = new Task({...req.body,owner:req.user._id});
