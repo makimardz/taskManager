@@ -9,17 +9,17 @@ POST http://localhost:3000/user/
 Content-Type: application/json
 
 {
-  "name": "Aora Doe",
-  "email": "Aore@example.com",
-  "password": "password1121"
+  "name": "Amy Hunt",
+  "email": "hunt@example.com",
+  "password": "password1010"
 }
 
 ### 
-GET http://localhost:3000/user/6495c3b4ad694f7660acd417
+GET http://localhost:3000/user/649c18ec66c2f0114def0dbb
 Content-Type: application/json
 
 ### 
-DELETE http://localhost:3000/user/6495c3b4ad694f7660acd417
+DELETE http://localhost:3000/user/649c18ec66c2f0114def0dbb
 
 ### 
 GET http://localhost:3000/task/
@@ -29,8 +29,8 @@ POST http://localhost:3000/task/
 Content-Type: application/json
 
 {
-  "title": "Visit sister Ann",
-  "description": "ministering sister ann",
+  "title": "Visiting",
+  "description": "ministering sister May",
   "complete": false,
   "owner": "649bfccc940630cb66a478ba"
 }

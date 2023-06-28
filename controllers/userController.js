@@ -1,80 +1,80 @@
 const User = require('../models/userModel');
 
-async function getAllUsers(req, res) {
-  try {
-    const users = await User.find({});
-    res.send(users);
-  } catch (error) {
-    res.status(500).send(error);
-  }
-}
+const getAllUsers = async (req, res) => {
+  await User
+  .find({ })
+  .then((data) => {
+    res.status(200).send(data);
+  })
+  .catch((error) => {
+    res.status(400).send(error);
+  });
+};
 
-async function createUser(req, res) {
+const createUser = async (req, res) => {
+
   const user = new User(req.body);
+  const token = user.createToken().then(() => {
+    res.status(200).send({user,token});
+  })
+  .catch((error) => {
+    res.status(400).send(error.message);
+  });
+};
 
-  try {
-    await user.save();
-    res.status(201).send(user);
-  } catch (error) {
-    res.status(400).send(error);
-  }
-}
+const getUserById = async (req, res) => {
+  await User
+  .findById(req.params.userId)
+    .then((data) => {
+      res.status(200).send(data);
+    })
+    .catch((err) => res.status(400).json({ message: "error"}));
+};
 
-async function getUser(req, res) {
-  const userId = req.params.id;
+const updateUser = async (req, res) => {
+  const allow = ["email", "password"];
+  const fields = Object.keys(req.body);
+  const valid = fields.every((field) => allow.includes(field));
 
-  try {
-    const user = await User.findOne({ _id: userId });
+  if (valid) {
+    try {
+      const id = req.params.userId;
+      const user = await User.findById(id);
 
-    if (!user) {
-      return res.status(404).send();
+      if (!user) {
+        return res.status(400).send("User not found");
+      }
+      fields.forEach((element) => (user[element] = req.body[element]));
+      await user.save();
+      res.status(200).send(user);
+    } catch (err) {
+      res.status(500).send(err);
     }
-
-    res.send(user);
-  } catch (error) {
-    res.status(500).send(error);
+  } else {
+    const notAllowed = fields.filter((field) => !allow.includes(field));
+    res.status(400).send(`You cannot edit ${notAllowed} field`);
   }
-}
-
-async function updateUser(req, res) {
-  const userId = req.params.id;
-
-  try {
-    const user = await User.findOneAndUpdate({ _id: userId }, req.body, {
-      new: true,
-      runValidators: true,
-    });
-
-    if (!user) {
-      return res.status(404).send();
+};
+const deleteUser = async (req, res) => {
+  User
+  .findByIdAndDelete(req.params.userId)
+  .then((data) => {
+    if (data) {
+      res.send(`User with id: ${req.params.userId} has been deleted successfully`);
+    } else {
+      res.status(400).send(`User with id: ${req.params.userId} not found`);
     }
+  })
+  .catch((e) => {
+    res.status(500).send(e);
+  });
+};
 
-    res.send(user);
-  } catch (error) {
-    res.status(400).send(error);
-  }
-}
-
-async function deleteUser(req, res) {
-  const userId = req.params.id;
-
-  try {
-    const user = await User.findOneAndDelete({ _id: userId });
-
-    if (!user) {
-      return res.status(404).send();
-    }
-
-    res.send(user);
-  } catch (error) {
-    res.status(500).send(error);
-  }
-}
 
 module.exports = {
   getAllUsers,
   createUser,
-  getUser,
+  getUserById,
   updateUser,
   deleteUser,
 };
