@@ -35,7 +35,7 @@ Content-Type: application/json
   "owner": "649bfccc940630cb66a478ba"
 }
 
-### 
+### Get task by ID
 GET http://localhost:3000/task/6495c619ad694f7660acd41f
 
 ### 
