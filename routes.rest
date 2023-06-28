@@ -9,9 +9,9 @@ POST http://localhost:3000/user/
 Content-Type: application/json
 
 {
-  "name": "jane  Doe",
-  "email": "jane@example.com",
-  "password": "password1321"
+  "name": "Aora Doe",
+  "email": "Aore@example.com",
+  "password": "password1121"
 }
 
 ### 
@@ -29,10 +29,10 @@ POST http://localhost:3000/task/
 Content-Type: application/json
 
 {
-  "title": "Buy groceries",
-  "description": "Buy milk, bread, and eggs",
+  "title": "Visit sister Ann",
+  "description": "ministering sister ann",
   "complete": false,
-  "owner": "6495c5fdad694f7660acd41d"
+  "owner": "649bfccc940630cb66a478ba"
 }
 
 ### 

@@ -1,9 +1,8 @@
 const mongoose = require('mongoose');
 const validator = require('validator');
 const bcrypt = require('bcryptjs');
-/*
 const jwt = require('jsonwebtoken');
-*/
+
 const userSchema = mongoose.Schema({
   name: {
     type: String,
@@ -24,21 +23,20 @@ const userSchema = mongoose.Schema({
         type: String,
         required: true
     },
-    /*
     tokens:[
       {
         type: String,
         required: true 
       }
     ]
-*/
+
 })
 userSchema.virtual('tasks',{
   ref : 'task',
   localField:'_id',
   foreignField:'owner'
 })
-/*
+
 userSchema.methods.toJSON = function(){
   const user = this 
   const userObject = user.toObject()
@@ -53,7 +51,7 @@ userSchema.pre("save", async function (next) {
     }
     next();
   });
-*/
+
 userSchema.statics.findByCredentials = async function(email, password) {
    const user = await this.findOne({ email });
 
@@ -69,7 +67,7 @@ userSchema.statics.findByCredentials = async function(email, password) {
     return user;
 };
 
-/*
+
 userSchema.methods.creatToken = async function(userID,secretKey){
   
   const token =  jwt.sign({_id:this._id.toString()},process.env.JWT_SECRET);
@@ -78,7 +76,5 @@ userSchema.methods.creatToken = async function(userID,secretKey){
   return token ;
   }
 
- */ 
- 
 
 module.exports = userSchema;
